@@ -3,7 +3,7 @@ module DropboxApi
   class ConnectionBuilder
     attr_accessor :namespace_id
 
-    def initialize(oauth_bearer = nil, access_token: nil, on_token_refreshed: nil)
+    def initialize(oauth_bearer = nil, access_token = nil, on_token_refreshed = nil)
       if access_token
         if !access_token.is_a?(OAuth2::AccessToken)
           raise ArgumentError, "access_token should be an OAuth2::AccessToken"
@@ -31,15 +31,17 @@ module DropboxApi
       @on_token_refreshed.call(@access_token.to_hash) if @on_token_refreshed
     end
 
-    private def bearer
+    def bearer
       @oauth_bearer or oauth_bearer_from_access_token
     end
+    private :bearer
 
-    private def oauth_bearer_from_access_token
+    def oauth_bearer_from_access_token
       refresh_access_token if @access_token.expired?
 
       @access_token.token
     end
+    private :oauth_bearer_from_access_token
 
     def build(url)
       Faraday.new(url) do |connection|

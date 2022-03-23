@@ -3,8 +3,8 @@ module DropboxApi
   class Client
     def initialize(
       oauth_bearer = ENV['DROPBOX_OAUTH_BEARER'],
-      access_token: nil,
-      on_token_refreshed: nil
+      access_token = nil,
+      on_token_refreshed = nil
     )
       if access_token
         @connection_builder = ConnectionBuilder.new(

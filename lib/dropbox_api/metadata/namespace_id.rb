@@ -4,7 +4,7 @@ module DropboxApi::Metadata
     field :namespace_id, String
 
     def to_hash
-      super.merge({".tag": 'namespace_id'})
+      super.merge({".tag" => 'namespace_id'})
     end
   end
 end

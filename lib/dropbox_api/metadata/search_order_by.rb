@@ -2,9 +2,9 @@
 
 module DropboxApi::Metadata
   class SearchOrderBy < DropboxApi::Metadata::Tag
-    VALID_VALUES = %i[
-      relevance
-      last_modified_time
+    VALID_VALUES = [
+      :relevance,
+      :last_modified_time
     ].freeze
 
     def self.valid_values
